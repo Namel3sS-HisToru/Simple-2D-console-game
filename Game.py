@@ -12,19 +12,19 @@ while True:
     os.system('cls' if os.name == 'nt' else 'clear')#Очищаем консоль
     Game_map[Settings.Player_pos] = "."
 
-    if Com == "w":#шаг в перёд
+    if Com == Settings.Move_key_forward:#шаг в перёд
         Settings.Last_player_pos = Settings.Player_pos
         Settings.Player_pos -= Settings.Line_length
 
-    if Com == "s":#Шаг назад
+    if Com == Settings.Move_key_back:#Шаг назад
         Settings.Last_player_pos = Settings.Player_pos
         Settings.Player_pos += Settings.Line_length
 
-    if Com == "d":#Шаг в право
+    if Com == Settings.Move_key_right:#Шаг в право
         Settings.Last_player_pos = Settings.Player_pos
         Settings.Player_pos += Settings.Length_step
 
-    if Com == "a":#Шаг в лево
+    if Com == Settings.Move_key_left:#Шаг в лево
         Settings.Last_player_pos = Settings.Player_pos
         Settings.Player_pos -= Settings.Length_step
 
@@ -34,7 +34,7 @@ while True:
         continue
 
 
-    if Com == "e":#Завершение игры
+    if Com == Settings.ESC_key:#Завершение игры
         break
 
 
