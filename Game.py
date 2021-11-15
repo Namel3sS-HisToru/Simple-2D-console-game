@@ -1,59 +1,36 @@
 import os
+import Settings
+import Map
 
-Game_map_str = '''###################################
-#...............###...............#
-#...##..................###.......#
-#................#................#
-#......#...............###........#
-#......#..........................#
-#......######......##......#......#
-#......#..........................#
-#......#..............###.....#...#
-#.......................#.........#
-#...........#...........#.........#
-#...##..........#.......###.......#
-#.................................#
-#.....#####..........##...........#
-#.....########....................#
-#.............##......#......#....#
-#.................................#
-###################################
-'''#Карта
+Game_map = [i for i in Map.Game_map_str]
 
-
-
-Game_map = [i for i in Game_map_str]
-Player_pos = 140#Начальная позиция игрока поумолчанию
-Last_player_pos = 0#Начальная предыдущая позиция игрока поумолчанию
-Line_length = 36#Длинна строки карты
-Length_step = 1#Длинна шага
 
 while True:
-    Game_map[Player_pos] = "0"
+    Game_map[Settings.Player_pos] = "0"
     print(''.join(str(e) for e in Game_map))#Выводим карту и игрока на экран
     Com = input("Действие:")#Получаем дейсвие
     os.system('cls' if os.name == 'nt' else 'clear')#Очищаем консоль
-    Game_map[Player_pos] = "."
+    Game_map[Settings.Player_pos] = "."
 
     if Com == "w":#шаг в перёд
-        Last_player_pos = Player_pos
-        Player_pos -= Line_length
+        Settings.Last_player_pos = Settings.Player_pos
+        Settings.Player_pos -= Settings.Line_length
 
     if Com == "s":#Шаг назад
-        Last_player_pos = Player_pos
-        Player_pos += Line_length
+        Settings.Last_player_pos = Settings.Player_pos
+        Settings.Player_pos += Settings.Line_length
 
     if Com == "d":#Шаг в право
-        Last_player_pos = Player_pos
-        Player_pos += Length_step
+        Settings.Last_player_pos = Settings.Player_pos
+        Settings.Player_pos += Settings.Length_step
 
     if Com == "a":#Шаг в лево
-        Last_player_pos = Player_pos
-        Player_pos -= Length_step
+        Settings.Last_player_pos = Settings.Player_pos
+        Settings.Player_pos -= Settings.Length_step
 
         
-    if Game_map[Player_pos] == "#":#Обработка столкновений с стеной
-        Player_pos = Last_player_pos
+    if Game_map[Settings.Player_pos] == "#":#Обработка столкновений с стеной
+        Settings.Player_pos = Settings.Last_player_pos
         continue
 
 
